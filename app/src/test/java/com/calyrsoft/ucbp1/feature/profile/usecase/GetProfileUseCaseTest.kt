@@ -1,6 +1,7 @@
 import com.calyrsoft.ucbp1.features.profile.domain.model.Profile
 import com.calyrsoft.ucbp1.features.profile.domain.model.value.*
 import com.calyrsoft.ucbp1.features.profile.domain.repository.ProfileRepository
+import com.calyrsoft.ucbp1.features.profile.domain.usecase.GetProfileUseCase
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking

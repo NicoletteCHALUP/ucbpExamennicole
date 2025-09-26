@@ -1,7 +1,6 @@
-package com.calyrsoft.ucbp1.feature.profile.domain.model
-
 import com.calyrsoft.ucbp1.features.profile.domain.model.Profile
-import org.junit.Assert
+import com.calyrsoft.ucbp1.features.profile.domain.model.value.*
+import org.junit.Assert.*
 import org.junit.Test
 
 class ProfileModelTest {
@@ -15,9 +14,9 @@ class ProfileModelTest {
             avatarUrl = ProfileAvatarUrl("https://img.com/avatar.jpg")
         )
 
-        Assert.assertEquals("user_123", profile.id.value)
-        Assert.assertEquals("Juan Perez", profile.name.value)
-        Assert.assertEquals("juan@ucb.edu.bo", profile.email.value)
-        Assert.assertEquals("https://img.com/avatar.jpg", profile.avatarUrl.value)
+        assertEquals("user_123", profile.id.value)
+        assertEquals("Juan Perez", profile.name.value)
+        assertEquals("juan@ucb.edu.bo", profile.email.value)
+        assertEquals("https://img.com/avatar.jpg", profile.avatarUrl.value)
     }
 }
