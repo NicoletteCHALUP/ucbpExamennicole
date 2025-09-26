@@ -1,6 +1,7 @@
 package com.calyrsoft.ucbp1.di
 
 import NotificationViewModel
+
 import com.calyrsoft.ucbp1.core.AuthManager
 import com.calyrsoft.ucbp1.features.dollar.data.database.AppRoomDatabase
 import com.calyrsoft.ucbp1.features.dollar.data.datasource.DollarLocalDataSource
@@ -18,6 +19,7 @@ import com.calyrsoft.ucbp1.features.github.domain.usecase.FindByNickNameUseCase
 import com.calyrsoft.ucbp1.features.github.presentation.GithubViewModel
 import com.google.firebase.database.FirebaseDatabase
 import com.calyrsoft.ucbp1.features.movies.data.api.MovieService
+import com.calyrsoft.ucbp1.features.movies.data.database.MoviesRoomDatabase
 import com.calyrsoft.ucbp1.features.movies.data.datasource.remote.MovieRemoteDataSource
 import com.calyrsoft.ucbp1.features.movies.data.repository.MovieRepositoryImpl
 import com.calyrsoft.ucbp1.features.movies.domain.repository.MovieRepository
@@ -74,21 +76,27 @@ val appModule = module {
     // Firebase Realtime Database
     single { FirebaseDatabase.getInstance() }
 
+
     // DataSources
     single { RealTimeRemoteDataSource(get()) }
     single { DollarLocalDataSource(get()) }
     single { GithubRemoteDataSource(get()) }
     single { MovieRemoteDataSource(get()) }
 
+    single { com.calyrsoft.ucbp1.features.movies.data.datasource.MovieLocalDataSource(get()) }
+
     // Database
     single { AppRoomDatabase.getDatabase(get()) }
     single { get<AppRoomDatabase>().dollarDao() }
+    single { get<MoviesRoomDatabase>().movieDao() }
+    single { MoviesRoomDatabase.getDatabase(get()) }
+
 
     // Repositories
     single<IDollarRepository> { DollarRepositoryImpl(get(), get()) }
     single<ProfileRepository> { ProfileRepositoryImpl() }
     single<IGithubRepository> { GithubRepository(get()) }
-    single<MovieRepository> { MovieRepositoryImpl(get()) }
+    single<MovieRepository> { MovieRepositoryImpl(get(),get()) }
     single { NotificationRepositoryImpl() as NotificationRepository }
 
     // UseCases
