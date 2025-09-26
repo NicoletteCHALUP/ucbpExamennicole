@@ -103,7 +103,21 @@ dependencies {
     ksp(libs.room.compiler)
     testImplementation(libs.room.testing)
 
+// Archivo: app/build.gradle.kts (dentro de dependencies { ... })
 
+    dependencies {
+        // ... tus dependencias existentes
+
+        // --- DEPENDENCIAS CRÍTICAS PARA PRUEBAS UNITARIAS ---
+        // Agregamos JUnit 4 (para @Test, assertEquals, etc.)
+        testImplementation("junit:junit:4.13.2")
+        // Agregamos Mockito-Kotlin (para el GetProfileUseCaseTest)
+        testImplementation("org.mockito.kotlin:mockito-kotlin:5.2.1")
+        // Agregamos Coroutines Test (para el runBlocking en Use Case Test)
+        testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.0")
+
+
+    }
 }
 
 sentry {
